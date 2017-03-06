@@ -21,14 +21,14 @@ public class UserController {
     private IUserService userService;
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String showUser(){
+    public ModelAndView showUser(){
 
         User user = userService.getUserById(1);
 
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("showUser");
 
         mv.addObject("user",user);
 
-        return "showUser";
+        return mv;
     }
 }

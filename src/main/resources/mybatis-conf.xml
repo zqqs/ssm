@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入外部配置-->
+    <properties resource="jdbc.properties"/>
+
+    <!-- 配置实体类的别名，配置实体类别名的目的是为了在引用实体类时可以使用实体类的别名来代替实体类，达到简写的目的 -->
+    <typeAliases>
+        <!-- 为实体类com.ttpai.mybatis.model.User配置一个别名_User -->
+        <!-- <typeAlias type="com.ttpai.mybatis.model.User" alias="_User"/> -->
+        <!-- 为com.ttpai.mybatis.model包下的所有实体类配置别名，MyBatis默认的设置别名的方式就是去除类所在的包后的简单的类名
+        比如com.ttpai.mybatis.model.User这个实体类的别名就会被设置成User
+         -->
+        <package name="com.ttpai.mybatis.model"/>
+    </typeAliases>
+
+    <!--环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${mybatis.url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--路径映射-->
+        <!--<mapper resource="com/ttpai/mybatis/mapping/UserMapper.xml"></mapper>-->
+        <!--接口方式-->
+        <mapper class="com.ttpai.mybatis.dao.UserMapper"></mapper>
+    </mappers>
+</configuration>
